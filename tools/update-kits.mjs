@@ -118,7 +118,15 @@ const page = `<!DOCTYPE html>
     }
 
     if (!location.hash) {
-      addEventListener('pageshow', () => requestAnimationFrame(() => scrollTo(0, 0)));
+      const topOnEntry = () => {
+        scrollTo(0, 0);
+        requestAnimationFrame(() => scrollTo(0, 0));
+        [50, 250, 1000].forEach((delay) => setTimeout(() => scrollTo(0, 0), delay));
+      };
+
+      addEventListener('DOMContentLoaded', topOnEntry, { once: true });
+      addEventListener('load', topOnEntry, { once: true });
+      addEventListener('pageshow', topOnEntry);
     }
   </script>
   <style>
@@ -135,6 +143,7 @@ const page = `<!DOCTYPE html>
 
     html {
       scroll-behavior: smooth;
+      overflow-anchor: none;
     }
 
     body {
