@@ -112,6 +112,15 @@ const page = `<!DOCTYPE html>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>黎明物资</title>
   <link rel="icon" href="Data/Liming.jpg">
+  <script>
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+
+    if (!location.hash) {
+      addEventListener('pageshow', () => requestAnimationFrame(() => scrollTo(0, 0)));
+    }
+  </script>
   <style>
     :root {
       color-scheme: dark;
