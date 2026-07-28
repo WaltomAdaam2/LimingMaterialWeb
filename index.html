@@ -1,484 +1,740 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
-    <title>黎明物资</title>
-    <link rel="icon" href=".\Data\Liming.jpg">
-    <link rel="stylesheet" href=".\css\top.css" type="text/css">
-    <link rel="stylesheet" href=".\css\aste.css" type="text/css">
-    <link rel="stylesheet" href=".\css\bk_ftcc.css" type="text/css">
-    <link rel="stylesheet" href=".\css\bodres.css" type="text/css">
-    <link rel="stylesheet" href=".\css\body.css" type="text/css">
-    <link rel="stylesheet" href=".\css\footena.css" type="text/css">
-    <link rel="stylesheet" href=".\css\gio.css" type="text/css">
-    <link rel="stylesheet" href=".\css\headers.css" type="text/css">
-    <link rel="stylesheet" href=".\css\hon.css" type="text/css">
-    <link rel="stylesheet" href=".\css\hrc.css" type="text/css">
-    <link rel="stylesheet" href=".\css\html.css" type="text/css">
-    <link rel="stylesheet" href=".\css\js-my-replace-txt.css" type="text/css">
-    <link rel="stylesheet" href=".\css\lp.css" type="text/css">
-    <link rel="stylesheet" href=".\css\nodec.css" type="text/css">
-    <link rel="stylesheet" href=".\css\std_btn.css" type="text/css">
-    <link rel="stylesheet" href=".\css\bcimg.css" type="text/css">
-    <link rel="stylesheet" href=".\css\beimg.css" type="text/css">
-    <link rel="stylesheet" href=".\css\foncop.css" type="text/css">
-    <meta charset="UTF-8">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>黎明物资</title>
+  <link rel="icon" href="Data/Liming.jpg">
+  <style>
+    :root {
+      color-scheme: dark;
+      font-family: "Microsoft YaHei", "PingFang SC", Arial, sans-serif;
+      background: #111;
+      color: #fff;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: #111 url("Data/BackGround.png") center top / cover fixed;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      background: rgba(0, 0, 0, 0.58);
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .page {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 24px 0 48px;
+    }
+
+    .site-header {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 6px;
+      background: rgba(0, 0, 0, 0.42);
+      backdrop-filter: blur(6px);
+    }
+
+    .site-logo {
+      width: 128px;
+      height: 128px;
+      object-fit: cover;
+      border-radius: 6px;
+    }
+
+    .site-header h1 {
+      margin: 0 0 8px;
+      font-size: clamp(2rem, 5vw, 3.8rem);
+      line-height: 1.1;
+    }
+
+    .site-header p {
+      margin: 0;
+      color: #e6e6e6;
+      font-size: 1.15rem;
+    }
+
+    .notice {
+      margin: 20px 0;
+      padding: 18px;
+      border-radius: 6px;
+      background: rgba(0, 0, 0, 0.5);
+      color: #f2f2f2;
+      line-height: 1.8;
+    }
+
+    .notice p {
+      margin: 0 0 8px;
+    }
+
+    .notice p:last-child {
+      margin-bottom: 0;
+    }
+
+    .category-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 18px 0 24px;
+    }
+
+    .category-nav a {
+      padding: 8px 12px;
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      border-radius: 6px;
+      background: rgba(0, 0, 0, 0.45);
+      text-decoration: none;
+    }
+
+    .kit-section {
+      margin-top: 28px;
+    }
+
+    .kit-section h2,
+    .business h2 {
+      margin: 0 0 14px;
+      padding-bottom: 8px;
+      border-bottom: 3px solid #6495ed;
+      font-size: 1.8rem;
+    }
+
+    .kit-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(341px, 1fr));
+      gap: 18px;
+      align-items: start;
+    }
+
+    .kit-card {
+      min-width: 0;
+      padding: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 6px;
+      background: rgba(0, 0, 0, 0.48);
+      text-align: center;
+    }
+
+    .kit-card h3 {
+      min-height: 2.6em;
+      margin: 0 0 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.05rem;
+      line-height: 1.3;
+      font-weight: 700;
+      overflow-wrap: anywhere;
+    }
+
+    .kit-card img {
+      display: block;
+      width: 341px;
+      height: 139px;
+      max-width: 100%;
+      margin: 0 auto;
+      object-fit: contain;
+      background: #fff;
+    }
+
+    .business,
+    .footer {
+      margin-top: 34px;
+      padding-top: 18px;
+      border-top: 3px solid #6495ed;
+    }
+
+    .business-images {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+      margin-top: 12px;
+    }
+
+    .business-images img {
+      width: 100%;
+      max-width: 500px;
+      border-radius: 6px;
+    }
+
+    .back-top {
+      position: fixed;
+      right: 24px;
+      bottom: 24px;
+      width: 96px;
+      height: 44px;
+      border: 2px solid #98f5ff;
+      border-radius: 6px;
+      background: #6495ed;
+      color: #000;
+      display: grid;
+      place-items: center;
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    @media (max-width: 520px) {
+      .page {
+        width: min(100% - 20px, 1180px);
+      }
+
+      .site-header {
+        align-items: flex-start;
+      }
+
+      .site-logo {
+        width: 84px;
+        height: 84px;
+      }
+
+      .kit-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
-
-<body background=".\Data\BackGround.png" class="bodres">
-  <div id="top"></div>
-  <div>
-		<div class="headers">
-      <table width="95%" border="0">
-        <tbody>
-          <tr>
-            <td>
-              <img src=".\Data\Liming.jpg" width="160px" height="160px" alt="黎明物资">
-            </td>
-            <td>
-              <div style="color: #E9E9E9; text-decoration: none;">
-              <h1>&nbsp;&nbsp;黎明物资</h1>
-              <h2>&nbsp;&nbsp;在这您可以挑选想要的物资</h2>
-              </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>      
-		</div>
-    <div class="foncop">
-      <font size="5" color="#FFFFFF">免责声明：物资一经售出，概不负责！</font><br>
-      <font size="4">更多物资您也可以咨询我们。如需购买物资，请加群：QQ 1018192346</font><br>
-      <font size="4">所有物品统一0.2r一盒，买多送多，更多优惠可以咨询我们。</font><br>
-      <font size="4">自出生点0.0起，每5w加1r，21w~40w 每5w加1.5r，41w以上每5w加2r。地狱配送价格由主世界换算。更远的位置视情况而定。</font><br>
-      <font size="4">您也可以一次性购买4r的物资，4r 25盒，价格更实惠！</font><br>
-      <font size="4">我们还有跑图，代跑出生点，建基地等业务，路费和配送价格相同，建基地的价格视情况而定。<br>耗材/装备/鸡刷价格和上文相同。</font><br>
-      <font size="4">定制物资：小于等于2盒收0.4r每盒，小于等于10盒0.3r，大于10盒0.2r</font><br>
-    </div>
-    
-    <div>
-      <br>
-      <table border="0">
-        <tr>
-          <td>
-            <a class="hon" href="#More">
-              <p>点击此处可看其他业务</p>
-            </a>
-          </td>
-          <td>
-            <a class="hon" href="#tbsm">
-              <p>点击此处前往特别说明</p>
-            </a>
-          </td>
-        </tr>
-      </table>
-      
-      <br>
-    </div>
-	  <div class="bk_ftcc autopadding15 col-md-8 col-xs-12">
-	    <h2>
-	      <p class="js-my-replace-txt">
-				  <span >装备：</span>
-			  </p>
-      </h2> 
-      <table width="95%" border="0">
-        <tbody>
-          <tr>
-            <td>
-              <div><img src=".\Data\Equip\Richang.png"><br><span style="color: #FFFFFF">日常装备</span></div> 
-            </td>
-            <td>
-              <div><img src=".\Data\Equip\Fly.png"><br><span style="color: #FFFFFF">跑图盒</span></div> 
-            </td>
-            <td>
-              <div><img src=".\Data\Equip\SanChaJi.png"><br><span style="color: #FFFFFF">三叉戟</span></div> 
-            </td>
-          </tr>
-          <tr> 
-            <td>
-              <div><img src=".\Data\Equip\Zhadan.png"><br><span style="color: #FFFFFF">炸弹盒</span></div> 
-            </td>
-            <td>
-              <div><img src=".\Data\Equip\Zhuangbei.png"><br><span style="color: #FFFFFF">装备盒</span></div> 
-            </td>
-            <td>
-              <div><img src=".\Data\Equip\ZhuangbeiV2.png"><br><span style="color: #FFFFFF">装备盒v2</span></div> 
-            </td>
-          </tr>
-          <tr> 
-            <td>
-              <div><img src=".\Data\Equip\MCOCETSc1.png"><br><span style="color: #FFFFFF">MCOCET生存盒1.0</span></div> 
-            </td>
-            <td>
-              <div><img src=".\Data\Equip\Stars8989Kit.png"><br><span style="color: #FFFFFF">Stars8989的日常Kit</span></div>
-            </td>
-            <td>
-              <div><img src=".\Data\Equip\DoddPVP.png"><br><span style="color: #FFFFFF">DoddPVPPVP盒</span></div> 
-          </td>
-          <tr> 
-            <td>
-              <div><img src=".\Data\Equip\PVP.png"><br><span style="color: #FFFFFF">PVP盒</span></div> 
-            </td>
-            <td>
-              <div><img src=".\Data\Equip\ChuShengDian.jpg"><br><span style="color: #FFFFFF">人工湖出生点“扶贫”盒</span></div> 
-            </td>
-            <td>
-              <div><img src=".\Data\Equip\NuJianKit.jpg"><br><span style="color: #FFFFFF">MC_Dodd弩箭盒</span></div> 
-            </td>
-          </tr>
-          <tr> 
-            <td>
-              <div><img src=".\Data\Equip\YanHuaNu.png"><br><span style="color: #FFFFFF">MC_Dodd的烟花弩盒</span></div>
-            </td>
-            
-          </tr>
-        </tbody>
-      </table>
+<body>
+  <div id="top" class="page">
+    <header class="site-header">
+      <img class="site-logo" src="Data/Liming.jpg" alt="黎明物资">
+      <div>
+        <h1>黎明物资</h1>
+        <p>在这里您可以挑选想要的物资</p>
       </div>
-    </div>
+    </header>
 
-    <div class="bk_ftcc autopadding15 col-md-8 col-xs-12">
-	    <h2>
-	      <p class="js-my-replace-txt">
-				  <span >补给：</span>
-			  </a>
-			</p>
-      </h2> 
-      <table width="95%" border="0">
-        <tbody>
-          <tr>
-            <td>
-              <div><img src=".\Data\Supply\ChaoChuan.png"><br><span style="color: #FFFFFF">超传套装</span></div> 
-            </td>
-            <td>
-              <div><img src=".\Data\Supply\JiShua.png"><br><span style="color: #FFFFFF">鸡刷套装</span></div> 
-            </td>
-            <td>
-              <div><img src=".\Data\Supply\KitBuji.png"><br><span style="color: #FFFFFF">Kit补给</span></div> 
-            </td>
-          </tr>
-          <tr> 
-            <td>
-              <div><img src=".\Data\Supply\YanHua.png"><br><span style="color: #FFFFFF">烟花补给</span></div> 
-            </td>
-            <td>
-              <div><img src=".\Data\Supply\QiaoChi.png"><br><span style="color: #FFFFFF">鞘翅补给</span></div> 
-            </td>
-            <td>
-              <div><img src=".\Data\Supply\JinPingGuo.png"><br><span style="color: #FFFFFF">金苹果补给</span></div> 
-            </td>
-          </tr>
-          <tr> 
-            <td>
-              <div><img src=".\Data\Supply\JingYanPing.png"><br><span style="color: #FFFFFF">经验补给</span></div> 
-            </td>
-            <td>
-              <div><img src=".\Data\Supply\HeiYaoShi.png"><br><span style="color: #FFFFFF">黑曜石补给</span></div> 
-            </td>
-            <td>
-              <div><img src=".\Data\Supply\ZhenZhu.png"><br><span style="color: #FFFFFF">珍珠补给</span></div> 
-            </td>
-          </tr>
-          <tr> 
-            <td>
-              <div><img src=".\Data\Supply\ShenGuiYaoShui.png"><br><span style="color: #FFFFFF">神龟药水补给</span></div> 
-            </td>
-            <td>
-              <div><img src=".\Data\Supply\ShuiJing.png"><br><span style="color: #FFFFFF">水晶补给</span></div> 
-            </td>
-            <td>
-              <div><img src=".\Data\Supply\MoYingXiang.png"><br><span style="color: #FFFFFF">末影箱补给</span></div> 
-            </td>
-          </tr>
-          <tr> 
-            <td>
-              <div><img src=".\Data\Supply\BuSiTuTeng.png"><br><span style="color: #FFFFFF">不死图腾补给</span></div> 
-            </td>
-            <td>
-              <div><img src=".\Data\Supply\ChongShengMao.png"><br><span style="color: #FFFFFF">重生锚补给</span></div> 
-            </td>
-            <td>
-              <div><img src=".\Data\Supply\HongShi.png"><br><span style="color: #FFFFFF">红石补给</span></div> 
-            </td>
-          </tr>
-          <tr> 
-            <td>
-              <div><img src=".\Data\Supply\MuBanTuJian.png"><br><span style="color: #FFFFFF">模板图鉴</span></div> 
-            </td>
-            <td>
-              <div><img src=".\Data\Supply\LiLiangYaoShui.png"><br><span style="color: #FFFFFF">力量药水补给</span></div> 
-            </td>
-            <td>
-              <div><img src=".\Data\Supply\LvShua.png"><br><span style="color: #FFFFFF">驴刷盒</span></div> 
-            </td>
-          </tr>
-        </tbody>
-      </table>
+    <section class="notice" aria-label="购买说明">
+      <p>免责声明：物资一经售出，概不负责。</p>
+      <p>更多物资您也可以咨询我们。如需购买物资，请加群：QQ 1018192346。</p>
+      <p>所有物品统一 0.2r 一盒，买多送多，更多优惠可以咨询我们。</p>
+      <p>自出生点 0.0 起，10w 内 5r；11w-40w 每 10w 加 2.5r；40w 以上每 10w 加 5r。地狱配送价格由主世界换算，更远的位置视情况而定。</p>
+      <p>您也可以一次性购买 4r 的物资，4r 25 盒，价格更实惠。</p>
+      <p>我们还有跑图、代跑出生点、建基地等业务，路费和配送价格相同，建基地的价格视情况而定。耗材、装备、鸡刷价格和上文相同。</p>
+      <p>定制物资：小于等于 5 盒收 0.4r 每盒，小于等于 10 盒 0.3r，大于 10 盒 0.2r。</p>
+    </section>
+
+    <nav class="category-nav" aria-label="商品分类">
+          <a href="#equipment">装备</a>
+          <a href="#supply">补给</a>
+          <a href="#all-items">全物品系列</a>
+          <a href="#contraband">违禁品</a>
+          <a href="#more-items">更多物品</a>
+      <a href="#More">其他业务</a>
+    </nav>
+
+    <section id="equipment" class="kit-section">
+      <h2>装备</h2>
+      <div class="kit-grid">
+        <article class="kit-card">
+          <h3>日常装备</h3>
+          <img src="Data/Kits/equipment/001.png" width="341" height="139" alt="日常装备">
+        </article>
+        <article class="kit-card">
+          <h3>黎明Fly</h3>
+          <img src="Data/Kits/equipment/002.png" width="341" height="139" alt="黎明Fly">
+        </article>
+        <article class="kit-card">
+          <h3>装备盒 v1</h3>
+          <img src="Data/Kits/equipment/003.png" width="341" height="139" alt="装备盒 v1">
+        </article>
+        <article class="kit-card">
+          <h3>装备盒 v2</h3>
+          <img src="Data/Kits/equipment/004.png" width="341" height="139" alt="装备盒 v2">
+        </article>
+        <article class="kit-card">
+          <h3>三叉戟</h3>
+          <img src="Data/Kits/equipment/005.png" width="341" height="139" alt="三叉戟">
+        </article>
+        <article class="kit-card">
+          <h3>炸弹盒</h3>
+          <img src="Data/Kits/equipment/006.png" width="341" height="139" alt="炸弹盒">
+        </article>
+        <article class="kit-card">
+          <h3>MCOCET生存盒1.0</h3>
+          <img src="Data/Kits/equipment/007.png" width="341" height="139" alt="MCOCET生存盒1.0">
+        </article>
+        <article class="kit-card">
+          <h3>MCOCET战斗盒</h3>
+          <img src="Data/Kits/equipment/008.png" width="341" height="139" alt="MCOCET战斗盒">
+        </article>
+        <article class="kit-card">
+          <h3>MCOCET Kit</h3>
+          <img src="Data/Kits/equipment/009.png" width="341" height="139" alt="MCOCET Kit">
+        </article>
+        <article class="kit-card">
+          <h3>DODD PVP 2.0</h3>
+          <img src="Data/Kits/equipment/010.png" width="341" height="139" alt="DODD PVP 2.0">
+        </article>
+        <article class="kit-card">
+          <h3>黎明PVP盒</h3>
+          <img src="Data/Kits/equipment/011.png" width="341" height="139" alt="黎明PVP盒">
+        </article>
+        <article class="kit-card">
+          <h3>MC_Dodd的烟花弩盒</h3>
+          <img src="Data/Kits/equipment/012.png" width="341" height="139" alt="MC_Dodd的烟花弩盒">
+        </article>
+        <article class="kit-card">
+          <h3>MC_Dodd弩箭盒</h3>
+          <img src="Data/Kits/equipment/013.png" width="341" height="139" alt="MC_Dodd弩箭盒">
+        </article>
+        <article class="kit-card">
+          <h3>畅快日常Kit</h3>
+          <img src="Data/Kits/equipment/014.png" width="341" height="139" alt="畅快日常Kit">
+        </article>
+        <article class="kit-card">
+          <h3>普通生存盒</h3>
+          <img src="Data/Kits/equipment/015.png" width="341" height="139" alt="普通生存盒">
+        </article>
+        <article class="kit-card">
+          <h3>黎明接人盒</h3>
+          <img src="Data/Kits/equipment/016.png" width="341" height="139" alt="黎明接人盒">
+        </article>
+        <article class="kit-card">
+          <h3>黎明战斗盒</h3>
+          <img src="Data/Kits/equipment/017.png" width="341" height="139" alt="黎明战斗盒">
+        </article>
+        <article class="kit-card">
+          <h3>黎明长矛盒</h3>
+          <img src="Data/Kits/equipment/018.png" width="341" height="139" alt="黎明长矛盒">
+        </article>
+        <article class="kit-card">
+          <h3>黎明重锤盒（破甲）</h3>
+          <img src="Data/Kits/equipment/019.png" width="341" height="139" alt="黎明重锤盒（破甲）">
+        </article>
+        <article class="kit-card">
+          <h3>Star8989日常kit</h3>
+          <img src="Data/Kits/equipment/020.png" width="341" height="139" alt="Star8989日常kit">
+        </article>
       </div>
-    </div>
+    </section>
 
-<div class="bk_ftcc autopadding15 col-md-8 col-xs-12">
-	    <h2>
-	      <p class="js-my-replace-txt">
-				  <span >全物品系列：</span>
-			  </a>
-			</p>
-      </h2> 
-      <table width="95%" border="0">
-        <tbody>
-          <tr> 
-            <td>
-              <div><img src=".\Data\AllItems\YaoShui1.png"><br><span style="color: #FFFFFF">全药水套装-1</span></div> 
-            </td>
-            <td>
-              <div><img src=".\Data\AllItems\YaoShui2.png"><br><span style="color: #FFFFFF">全药水套装-2</span></div> 
-            </td>
-            <td>
-              <div><img src=".\Data\AllItems\YaoShui3.png"><br><span style="color: #FFFFFF">全药水套装-3</span></div> 
-            </td>
-          <tr>
-            <td>
-              <div><img src=".\Data\AllItems\Block1.png"><br><span style="color: #FFFFFF">全方块套装-1</span></div> 
-            </td>
-            <td>
-              <div><img src=".\Data\AllItems\Block2.png"><br><span style="color: #FFFFFF">全方块套装-2</span></div> 
-            </td>
-            <td>
-              <div><img src=".\Data\AllItems\Block3.png"><br><span style="color: #FFFFFF">全方块套装-3</span></div> 
-            </td>
-          </tr>
-          <tr> 
-            <td>
-              <div><img src=".\Data\AllItems\Block4.png"><br><span style="color: #FFFFFF">全方块套装-4</span></div> 
-            </td>
-            <td>
-              <div><img src=".\Data\AllItems\Block5.png"><br><span style="color: #FFFFFF">全方块套装-5</span></div> 
-            </td>
-            <td>
-              <div><img src=".\Data\AllItems\Block6.png"><br><span style="color: #FFFFFF">全方块套装-6</span></div> 
-            </td>
-          </tr>
-          <tr> 
-            <td>
-              <div><img src=".\Data\AllItems\Block7.png"><br><span style="color: #FFFFFF">全方块套装-7</span></div> 
-            </td>
-            <td>
-              <div><img src=".\Data\AllItems\Block8.png"><br><span style="color: #FFFFFF">全方块套装-8</span></div> 
-            </td>
-            <td>
-              <div><img src=".\Data\AllItems\Block9.png"><br><span style="color: #FFFFFF">全方块套装-9</span></div> 
-            </td>
-          </tr>
-          <tr> 
-            <td>
-              <div><img src=".\Data\AllItems\Block10.png"><br><span style="color: #FFFFFF">全方块套装-10</span></div> 
-            </td>
-            <td>
-              <div><img src=".\Data\AllItems\Block11.png"><br><span style="color: #FFFFFF">全方块套装-11</span></div> 
-            </td>
-            <td>
-              <div><img src=".\Data\AllItems\Block12.png"><br><span style="color: #FFFFFF">全方块套装-12</span></div> 
-            </td>
-          </tr>
-        </tbody>
-      </table>
+    <section id="supply" class="kit-section">
+      <h2>补给</h2>
+      <div class="kit-grid">
+        <article class="kit-card">
+          <h3>补给Kit</h3>
+          <img src="Data/Kits/supply/001.png" width="341" height="139" alt="补给Kit">
+        </article>
+        <article class="kit-card">
+          <h3>烟花补给</h3>
+          <img src="Data/Kits/supply/002.png" width="341" height="139" alt="烟花补给">
+        </article>
+        <article class="kit-card">
+          <h3>鞘翅补给</h3>
+          <img src="Data/Kits/supply/003.png" width="341" height="139" alt="鞘翅补给">
+        </article>
+        <article class="kit-card">
+          <h3>金苹果补给</h3>
+          <img src="Data/Kits/supply/004.png" width="341" height="139" alt="金苹果补给">
+        </article>
+        <article class="kit-card">
+          <h3>经验补给</h3>
+          <img src="Data/Kits/supply/005.png" width="341" height="139" alt="经验补给">
+        </article>
+        <article class="kit-card">
+          <h3>黑曜石补给</h3>
+          <img src="Data/Kits/supply/006.png" width="341" height="139" alt="黑曜石补给">
+        </article>
+        <article class="kit-card">
+          <h3>珍珠补给</h3>
+          <img src="Data/Kits/supply/007.png" width="341" height="139" alt="珍珠补给">
+        </article>
+        <article class="kit-card">
+          <h3>神龟药水补给</h3>
+          <img src="Data/Kits/supply/008.png" width="341" height="139" alt="神龟药水补给">
+        </article>
+        <article class="kit-card">
+          <h3>力量药水补给</h3>
+          <img src="Data/Kits/supply/009.png" width="341" height="139" alt="力量药水补给">
+        </article>
+        <article class="kit-card">
+          <h3>水晶补给</h3>
+          <img src="Data/Kits/supply/010.png" width="341" height="139" alt="水晶补给">
+        </article>
+        <article class="kit-card">
+          <h3>不死图腾补给</h3>
+          <img src="Data/Kits/supply/011.png" width="341" height="139" alt="不死图腾补给">
+        </article>
+        <article class="kit-card">
+          <h3>黎明风弹盒</h3>
+          <img src="Data/Kits/supply/012.png" width="341" height="139" alt="黎明风弹盒">
+        </article>
+        <article class="kit-card">
+          <h3>末影箱补给</h3>
+          <img src="Data/Kits/supply/013.png" width="341" height="139" alt="末影箱补给">
+        </article>
+        <article class="kit-card">
+          <h3>重生锚补给</h3>
+          <img src="Data/Kits/supply/014.png" width="341" height="139" alt="重生锚补给">
+        </article>
+        <article class="kit-card">
+          <h3>驴刷盒</h3>
+          <img src="Data/Kits/supply/015.png" width="341" height="139" alt="驴刷盒">
+        </article>
+        <article class="kit-card">
+          <h3>黎明补充盒</h3>
+          <img src="Data/Kits/supply/016.png" width="341" height="139" alt="黎明补充盒">
+        </article>
+        <article class="kit-card">
+          <h3>KWDPAOHF补给</h3>
+          <img src="Data/Kits/supply/017.png" width="341" height="139" alt="KWDPAOHF补给">
+        </article>
+        <article class="kit-card">
+          <h3>嗅探兽刷</h3>
+          <img src="Data/Kits/supply/018.png" width="341" height="139" alt="嗅探兽刷">
+        </article>
       </div>
-    </div>
+    </section>
 
-    <div class="bk_ftcc autopadding15 col-md-8 col-xs-12">
-	    <h2>
-	      <p class="js-my-replace-txt">
-				  <span >违禁品：</span>
-			  </a>
-			</p>
-      </h2> 
-      <table width="95%" border="0">
-        <tbody>
-          <tr>
-            <td>
-              <div><img src=".\Data\Contraband\1.png"><br><span style="color: #FFFFFF">违禁品-1</span></div> 
-            </td>
-            <td>
-              <div><img src=".\Data\Contraband\2.png"><br><span style="color: #FFFFFF">违禁品-2</span></div> 
-            </td>
-            <td>
-              <div><img src=".\Data\Contraband\3.png"><br><span style="color: #FFFFFF">违禁品-3</span></div> 
-            </td>
-          </tr>
-          <tr> 
-            <td>
-              <div><img src=".\Data\Contraband\4.png"><br><span style="color: #FFFFFF">违禁品-4</span></div> 
-            </td>
-            <td>
-              <div><img src=".\Data\Contraband\5.png"><br><span style="color: #FFFFFF">违禁品-5</span></div> 
-            </td>
-            <td>
-              <div><img src=".\Data\Contraband\ShuaGuaiLong.png"><br><span style="color: #FFFFFF">刷怪笼（购买前请查看页面下方的特别说明）</span></div> 
-            </td>
-          </tr>
-        </tbody>
-      </table>
+    <section id="all-items" class="kit-section">
+      <h2>全物品系列</h2>
+      <div class="kit-grid">
+        <article class="kit-card">
+          <h3>附魔书</h3>
+          <img src="Data/Kits/all-items/001.png" width="341" height="139" alt="附魔书">
+        </article>
+        <article class="kit-card">
+          <h3>红石</h3>
+          <img src="Data/Kits/all-items/002.png" width="341" height="139" alt="红石">
+        </article>
+        <article class="kit-card">
+          <h3>模板图鉴</h3>
+          <img src="Data/Kits/all-items/003.png" width="341" height="139" alt="模板图鉴">
+        </article>
+        <article class="kit-card">
+          <h3>全药水套装-1</h3>
+          <img src="Data/Kits/all-items/004.png" width="341" height="139" alt="全药水套装-1">
+        </article>
+        <article class="kit-card">
+          <h3>全药水套装-2</h3>
+          <img src="Data/Kits/all-items/005.png" width="341" height="139" alt="全药水套装-2">
+        </article>
+        <article class="kit-card">
+          <h3>全药水套装-3</h3>
+          <img src="Data/Kits/all-items/006.png" width="341" height="139" alt="全药水套装-3">
+        </article>
+        <article class="kit-card">
+          <h3>全方块套装-1</h3>
+          <img src="Data/Kits/all-items/007.png" width="341" height="139" alt="全方块套装-1">
+        </article>
+        <article class="kit-card">
+          <h3>全方块套装-2</h3>
+          <img src="Data/Kits/all-items/008.png" width="341" height="139" alt="全方块套装-2">
+        </article>
+        <article class="kit-card">
+          <h3>全方块套装-3</h3>
+          <img src="Data/Kits/all-items/009.png" width="341" height="139" alt="全方块套装-3">
+        </article>
+        <article class="kit-card">
+          <h3>全方块套装-4</h3>
+          <img src="Data/Kits/all-items/010.png" width="341" height="139" alt="全方块套装-4">
+        </article>
+        <article class="kit-card">
+          <h3>全方块套装-5</h3>
+          <img src="Data/Kits/all-items/011.png" width="341" height="139" alt="全方块套装-5">
+        </article>
+        <article class="kit-card">
+          <h3>全方块套装-6</h3>
+          <img src="Data/Kits/all-items/012.png" width="341" height="139" alt="全方块套装-6">
+        </article>
+        <article class="kit-card">
+          <h3>全方块套装-7</h3>
+          <img src="Data/Kits/all-items/013.png" width="341" height="139" alt="全方块套装-7">
+        </article>
+        <article class="kit-card">
+          <h3>全方块套装-8</h3>
+          <img src="Data/Kits/all-items/014.png" width="341" height="139" alt="全方块套装-8">
+        </article>
+        <article class="kit-card">
+          <h3>全方块套装-9</h3>
+          <img src="Data/Kits/all-items/015.png" width="341" height="139" alt="全方块套装-9">
+        </article>
+        <article class="kit-card">
+          <h3>全方块套装-10</h3>
+          <img src="Data/Kits/all-items/016.png" width="341" height="139" alt="全方块套装-10">
+        </article>
+        <article class="kit-card">
+          <h3>全方块套装-11</h3>
+          <img src="Data/Kits/all-items/017.png" width="341" height="139" alt="全方块套装-11">
+        </article>
+        <article class="kit-card">
+          <h3>全方块套装-12</h3>
+          <img src="Data/Kits/all-items/018.png" width="341" height="139" alt="全方块套装-12">
+        </article>
+        <article class="kit-card">
+          <h3>画图套装-1</h3>
+          <img src="Data/Kits/all-items/019.png" width="341" height="139" alt="画图套装-1">
+        </article>
+        <article class="kit-card">
+          <h3>画图套装-2</h3>
+          <img src="Data/Kits/all-items/020.png" width="341" height="139" alt="画图套装-2">
+        </article>
+        <article class="kit-card">
+          <h3>画图套装-3</h3>
+          <img src="Data/Kits/all-items/021.png" width="341" height="139" alt="画图套装-3">
+        </article>
+        <article class="kit-card">
+          <h3>画图套装-4</h3>
+          <img src="Data/Kits/all-items/022.png" width="341" height="139" alt="画图套装-4">
+        </article>
+        <article class="kit-card">
+          <h3>画图套装-5</h3>
+          <img src="Data/Kits/all-items/023.png" width="341" height="139" alt="画图套装-5">
+        </article>
+        <article class="kit-card">
+          <h3>画图套装-6</h3>
+          <img src="Data/Kits/all-items/024.png" width="341" height="139" alt="画图套装-6">
+        </article>
+        <article class="kit-card">
+          <h3>画图套装-7</h3>
+          <img src="Data/Kits/all-items/025.png" width="341" height="139" alt="画图套装-7">
+        </article>
+        <article class="kit-card">
+          <h3>画图套装-8</h3>
+          <img src="Data/Kits/all-items/026.png" width="341" height="139" alt="画图套装-8">
+        </article>
+        <article class="kit-card">
+          <h3>画图套装-9</h3>
+          <img src="Data/Kits/all-items/027.png" width="341" height="139" alt="画图套装-9">
+        </article>
+        <article class="kit-card">
+          <h3>画图套装-10</h3>
+          <img src="Data/Kits/all-items/028.png" width="341" height="139" alt="画图套装-10">
+        </article>
+        <article class="kit-card">
+          <h3>画图套装-11</h3>
+          <img src="Data/Kits/all-items/029.png" width="341" height="139" alt="画图套装-11">
+        </article>
+        <article class="kit-card">
+          <h3>画图套装-12</h3>
+          <img src="Data/Kits/all-items/030.png" width="341" height="139" alt="画图套装-12">
+        </article>
+        <article class="kit-card">
+          <h3>画图套装-13</h3>
+          <img src="Data/Kits/all-items/031.png" width="341" height="139" alt="画图套装-13">
+        </article>
+        <article class="kit-card">
+          <h3>画图套装-14</h3>
+          <img src="Data/Kits/all-items/032.png" width="341" height="139" alt="画图套装-14">
+        </article>
+        <article class="kit-card">
+          <h3>奶盒子</h3>
+          <img src="Data/Kits/all-items/033.png" width="341" height="139" alt="奶盒子">
+        </article>
+        <article class="kit-card">
+          <h3>音乐盒</h3>
+          <img src="Data/Kits/all-items/034.png" width="341" height="139" alt="音乐盒">
+        </article>
+        <article class="kit-card">
+          <h3>线盒</h3>
+          <img src="Data/Kits/all-items/035.png" width="341" height="139" alt="线盒">
+        </article>
+        <article class="kit-card">
+          <h3>脚手架</h3>
+          <img src="Data/Kits/all-items/036.png" width="341" height="139" alt="脚手架">
+        </article>
+        <article class="kit-card">
+          <h3>白色玻璃</h3>
+          <img src="Data/Kits/all-items/037.png" width="341" height="139" alt="白色玻璃">
+        </article>
       </div>
-    </div>
+    </section>
 
-    <div class="bk_ftcc autopadding15 col-md-8 col-xs-12">
-	    <h2>
-	      <p class="js-my-replace-txt">
-				  <span >更多物品：</span>
-			  </a>
-			</p>
-      </h2> 
-      <table width="95%" border="0">
-        <tbody>
-          <tr>
-            <td>
-              <div><img src=".\Data\More\DaHuoShi.png"><br><span style="color: #FFFFFF">打火石</span></div> 
-            </td>
-            <td>
-              <div><img src=".\Data\More\TNT.png"><br><span style="color: #FFFFFF">TNT</span></div> 
-            </td>
-            <td>
-              <div><img src=".\Data\More\ZiMu.png"><br><span style="color: #FFFFFF">字母盒</span></div> 
-            </td>
-          </tr>
-          <tr> 
-            <td>
-              <div><img src=".\Data\More\YingHuaJianzhu.png"><br><span style="color: #FFFFFF">樱花建筑</span></div> 
-            </td>
-            <td>
-              <div><img src=".\Data\More\YingHuaHeji.png"><br><span style="color: #FFFFFF">樱花合集</span></div> 
-            </td>
-            <td>
-              <div><img src=".\Data\More\YuanShi.png"><br><span style="color: #FFFFFF">圆石</span></div> 
-            </td>
-          </tr>
-          <tr> 
-            <td>
-              <div><img src=".\Data\More\Huatu1.png"><br><span style="color: #FFFFFF">画图套装-1</span></div> 
-            </td>
-            <td>
-              <div><img src=".\Data\More\Huatu2.png"><br><span style="color: #FFFFFF">画图套装-2</span></div> 
-            </td>
-            <td>
-              <div><img src=".\Data\More\Huatu3.png"><br><span style="color: #FFFFFF">画图套装-3</span></div> 
-            </td>
-          </tr>
-          <tr> 
-            <td>
-              <div><img src=".\Data\More\Huatu4.png"><br><span style="color: #FFFFFF">画图套装-4</span></div> 
-            </td>
-            <td>
-              <div><img src=".\Data\More\Huatu5.png"><br><span style="color: #FFFFFF">画图套装-5</span></div> 
-            </td>
-            <td>
-              <div><img src=".\Data\More\KuangWu.png"><br><span style="color: #FFFFFF">矿物套装</span></div> 
-            </td>
-          </tr>
-          <tr> 
-            <td>
-              <div><img src=".\Data\More\BaiSeHunNingTu.png"><br><span style="color: #FFFFFF">白色混凝土</span></div> 
-            </td>
-            <td>
-              <div><img src=".\Data\More\HaiJingDeng.png"><br><span style="color: #FFFFFF">海晶灯</span></div> 
-            </td>
-            <td>
-              <div><img src=".\Data\More\NiTu.png"><br><span style="color: #FFFFFF">泥土</span></div> 
-            </td>
-          </tr>
-          <tr> 
-            <td>
-              <div><img src=".\Data\More\ShiYing.png"><br><span style="color: #FFFFFF">石英</span></div> 
-            </td>
-            <td>
-              <div><img src=".\Data\More\LanZiYangMao.png"><br><span style="color: #FFFFFF">蓝 紫色羊毛</span></div> 
-            </td>
-            <td>
-              <div><img src=".\Data\More\BaiDanhuiYangMao.png"><br><span style="color: #FFFFFF">白 淡灰色羊毛</span></div> 
-            </td>
-          </tr>
-          <tr> 
-            <td>
-              <div><img src=".\Data\More\CaiSeTaoWa.png"><br><span style="color: #FFFFFF">彩色陶瓦</span></div> 
-            </td>
-            <td>
-              <div><img src=".\Data\More\LongXi.png"><br><span style="color: #FFFFFF">龙息盒</span></div> 
-            </td>
-            <td>
-              <div><img src=".\Data\More\An.png"><br><span style="color: #FFFFFF">鞍盒</span></div> 
-            </td>
-          </tr>
-          <tr> 
-            <td>
-              <div><img src=".\Data\More\NianYe.png"><br><span style="color: #FFFFFF">粘液盒</span></div> 
-            </td>
-            <td>
-              <div><img src=".\Data\More\ZhiZhuWang.jpg"><br><span style="color: #FFFFFF">蜘蛛网盒</span></div> 
-            </td>
-            <td>
-              <div><img src=".\Data\More\QiLiaoHe.png"><br><span style="color: #FFFFFF">旗料盒</span></div> 
-            </td>
-          </tr>
-          <tr> 
-            <td>
-               <div><img src=".\Data\More\QuanYeTi.jpg"><br><span style="color: #FFFFFF">全液体盒</span></div> 
-            </td>
-            <td>
-               <div><img src=".\Data\More\HuaKit.png"><br><span style="color: #FFFFFF">花Kit</span></div> 
-            </td>
-            <td>
-               <div><img src=".\Data\More\ZhuZi.png"><br><span style="color: #FFFFFF">竹子</span></div> 
-            </td>
-          </tr>
-          <tr> 
-            <td>
-               <div><img src=".\Data\More\Stars8989BuJiaLe.png"><br><span style="color: #FFFFFF">Stars8989的补佳乐旗帜</span></div> 
-            </td>
-            <td>
-               <div><img src=".\Data\More\ZiSongGuo.png"><br><span style="color: #FFFFFF">紫颂果</span></div> 
-            </td>
-          </tr>
-        </tbody>
-      </table>
+    <section id="contraband" class="kit-section">
+      <h2>违禁品</h2>
+      <div class="kit-grid">
+        <article class="kit-card">
+          <h3>32K床</h3>
+          <img src="Data/Kits/contraband/001.png" width="341" height="139" alt="32K床">
+        </article>
+        <article class="kit-card">
+          <h3>32K钻石剑</h3>
+          <img src="Data/Kits/contraband/002.png" width="341" height="139" alt="32K钻石剑">
+        </article>
+        <article class="kit-card">
+          <h3>带手盔甲架</h3>
+          <img src="Data/Kits/contraband/003.png" width="341" height="139" alt="带手盔甲架">
+        </article>
+        <article class="kit-card">
+          <h3>OP药水</h3>
+          <img src="Data/Kits/contraband/004.png" width="341" height="139" alt="OP药水">
+        </article>
+        <article class="kit-card">
+          <h3>32K装备混合包</h3>
+          <img src="Data/Kits/contraband/005.png" width="341" height="139" alt="32K装备混合包">
+        </article>
       </div>
-    </div>
+    </section>
 
-    <div id="More">
-      <hr width="85%" size="3px" color="#6495ED" align="left">
-      <br>
-      <font size="5" color="#FFFFFF">其他业务</font><br>
-      <span style="color: #FFFFFF">代宣传业务，可保证7*24H不离线，宣传工具代码开源</span>
-      <table width="95%" border="0">
-        <tr>
-          <td>
-            <img src=".\Data\Business\DaiXuanChuan1.png" width="500px">
-          </td>
-          <td>
-            <img src=".\Data\Business\DaiXuanChuan2.png" width="500px">
-          </td>
-        </tr>
-      </table>
-    </div>
+    <section id="more-items" class="kit-section">
+      <h2>更多物品</h2>
+      <div class="kit-grid">
+        <article class="kit-card">
+          <h3>打火石</h3>
+          <img src="Data/Kits/more-items/001.png" width="341" height="139" alt="打火石">
+        </article>
+        <article class="kit-card">
+          <h3>TNT盒</h3>
+          <img src="Data/Kits/more-items/002.png" width="341" height="139" alt="TNT盒">
+        </article>
+        <article class="kit-card">
+          <h3>全液体</h3>
+          <img src="Data/Kits/more-items/003.png" width="341" height="139" alt="全液体">
+        </article>
+        <article class="kit-card">
+          <h3>旗料盒</h3>
+          <img src="Data/Kits/more-items/004.png" width="341" height="139" alt="旗料盒">
+        </article>
+        <article class="kit-card">
+          <h3>海晶灯</h3>
+          <img src="Data/Kits/more-items/005.png" width="341" height="139" alt="海晶灯">
+        </article>
+        <article class="kit-card">
+          <h3>樱花合集</h3>
+          <img src="Data/Kits/more-items/006.png" width="341" height="139" alt="樱花合集">
+        </article>
+        <article class="kit-card">
+          <h3>圆石</h3>
+          <img src="Data/Kits/more-items/007.png" width="341" height="139" alt="圆石">
+        </article>
+        <article class="kit-card">
+          <h3>蓝紫羊毛</h3>
+          <img src="Data/Kits/more-items/008.png" width="341" height="139" alt="蓝紫羊毛">
+        </article>
+        <article class="kit-card">
+          <h3>泥土</h3>
+          <img src="Data/Kits/more-items/009.png" width="341" height="139" alt="泥土">
+        </article>
+        <article class="kit-card">
+          <h3>字母盒</h3>
+          <img src="Data/Kits/more-items/010.png" width="341" height="139" alt="字母盒">
+        </article>
+        <article class="kit-card">
+          <h3>石英盒</h3>
+          <img src="Data/Kits/more-items/011.png" width="341" height="139" alt="石英盒">
+        </article>
+        <article class="kit-card">
+          <h3>白淡灰羊毛</h3>
+          <img src="Data/Kits/more-items/012.png" width="341" height="139" alt="白淡灰羊毛">
+        </article>
+        <article class="kit-card">
+          <h3>蛛网</h3>
+          <img src="Data/Kits/more-items/013.png" width="341" height="139" alt="蛛网">
+        </article>
+        <article class="kit-card">
+          <h3>矿物kit</h3>
+          <img src="Data/Kits/more-items/014.png" width="341" height="139" alt="矿物kit">
+        </article>
+        <article class="kit-card">
+          <h3>樱花建筑</h3>
+          <img src="Data/Kits/more-items/015.png" width="341" height="139" alt="樱花建筑">
+        </article>
+        <article class="kit-card">
+          <h3>龙息</h3>
+          <img src="Data/Kits/more-items/016.png" width="341" height="139" alt="龙息">
+        </article>
+        <article class="kit-card">
+          <h3>基地建设盒</h3>
+          <img src="Data/Kits/more-items/017.png" width="341" height="139" alt="基地建设盒">
+        </article>
+        <article class="kit-card">
+          <h3>彩色陶瓦</h3>
+          <img src="Data/Kits/more-items/018.png" width="341" height="139" alt="彩色陶瓦">
+        </article>
+        <article class="kit-card">
+          <h3>竹子</h3>
+          <img src="Data/Kits/more-items/019.png" width="341" height="139" alt="竹子">
+        </article>
+        <article class="kit-card">
+          <h3>花kit</h3>
+          <img src="Data/Kits/more-items/020.png" width="341" height="139" alt="花kit">
+        </article>
+        <article class="kit-card">
+          <h3>紫颂果</h3>
+          <img src="Data/Kits/more-items/021.png" width="341" height="139" alt="紫颂果">
+        </article>
+        <article class="kit-card">
+          <h3>建筑盒2</h3>
+          <img src="Data/Kits/more-items/022.png" width="341" height="139" alt="建筑盒2">
+        </article>
+        <article class="kit-card">
+          <h3>鞍</h3>
+          <img src="Data/Kits/more-items/023.png" width="341" height="139" alt="鞍">
+        </article>
+        <article class="kit-card">
+          <h3>白色混凝土</h3>
+          <img src="Data/Kits/more-items/024.png" width="341" height="139" alt="白色混凝土">
+        </article>
+        <article class="kit-card">
+          <h3>建筑套装</h3>
+          <img src="Data/Kits/more-items/025.png" width="341" height="139" alt="建筑套装">
+        </article>
+        <article class="kit-card">
+          <h3>粘液盒</h3>
+          <img src="Data/Kits/more-items/026.png" width="341" height="139" alt="粘液盒">
+        </article>
+        <article class="kit-card">
+          <h3>火把花</h3>
+          <img src="Data/Kits/more-items/027.png" width="341" height="139" alt="火把花">
+        </article>
+        <article class="kit-card">
+          <h3>全色美西螈</h3>
+          <img src="Data/Kits/more-items/028.png" width="341" height="139" alt="全色美西螈">
+        </article>
+        <article class="kit-card">
+          <h3>颜料盒</h3>
+          <img src="Data/Kits/more-items/029.png" width="341" height="139" alt="颜料盒">
+        </article>
+        <article class="kit-card">
+          <h3>照明方块</h3>
+          <img src="Data/Kits/more-items/030.png" width="341" height="139" alt="照明方块">
+        </article>
+        <article class="kit-card">
+          <h3>木材盒</h3>
+          <img src="Data/Kits/more-items/031.png" width="341" height="139" alt="木材盒">
+        </article>
+        <article class="kit-card">
+          <h3>全混凝土</h3>
+          <img src="Data/Kits/more-items/032.png" width="341" height="139" alt="全混凝土">
+        </article>
+      </div>
+    </section>
 
-    <br>
-    <div id="tbsm">
-      <font size="5" color="#FFFFFF">特别说明</font><br>
-      <font color="#FFFFFF">刷怪笼：由于刷怪笼不能放在潜影盒，只能手动复制，所以您所购买的刷怪笼的数量为9组。</font>
-    </div>
+    <section id="More" class="business">
+      <h2>其他业务</h2>
+      <p>代宣传业务，可保证 7*24H 不离线，宣传工具代码开源。</p>
+      <div class="business-images">
+        <img src="Data/Business/DaiXuanChuan1.png" alt="代宣传业务图 1">
+        <img src="Data/Business/DaiXuanChuan2.png" alt="代宣传业务图 2">
+      </div>
+    </section>
 
-    <div>
-      <a class="topa" href="#top">
-        <div class="topb " style="display:block ">返回顶部</div>
-      </a>
-    </div>
-  <br>
-    <div data-id="14479" id="mypublic_bottom_edit" class="footena">
-      <table align="center" width="95%" border="0" cellspacing="0" cellpadding="0">
-        <tbody>
-          <tr>
-            <td align="left"><a class="gio" href="https://github.com"><b style="color: #e63d4f;font-size: 16px;"> ♥ </b>本站由 GitHub 驱动</a></td>
-            <td align="right"><a href="https://home.mcocet.top" style="color: #E9E9E9; text-decoration: none;">2025  @黎明物资&nbsp;&nbsp;&nbsp;MCOCET提供技术支持</a></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </body>
+    <footer class="footer">
+      <p>本站由 GitHub Pages 驱动。</p>
+      <p><a href="https://home.mcocet.top">2025 @黎明物资 MCOCET 提供技术支持</a></p>
+    </footer>
+  </div>
+
+  <a class="back-top" href="#top">返回顶部</a>
+</body>
 </html>
-
